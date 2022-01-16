@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+
+<div id="accordion">
+    {% if info %}
+    {% for data in info %}
+    <div class="card">
+        <div class="card-header" id="headingOne">
+            <h5 class="mb-0">
+                <button class="btn btn-link" data-toggle="collapse" data-target="#{{data.id}}" aria-expanded="true"
+                    aria-controls="collapseOne">
+                    {{ data.heading }}
+                </button>
+            </h5>
+        </div>
+
+        <div id="{{data.id}}" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+            <div class="card-body">
+                {{ data.content | safe }}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+</div>
+
+{% endblock %}
